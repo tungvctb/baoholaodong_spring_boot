@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org"
+      th:replace="~{layout/_layoutCustomer ::main-fragment (
+                                ~{:: title},
+                                ~{:: #index-static-resource},
+                                ~{:: #index-main-content},
+                                ~{:: #index-static-resource-end}
+                                )}">
+<head>
+    <meta charset="UTF-8">
+    <title>Index page</title>
+
+    <th:block id="index-static-resource">
+        <!--        Khu vực để link Css, JavaScript ở đầu trang index.html-->
+        <!--    Nếu cần, còn không thì bỏ trống-->
+    </th:block>
+</head>
+<body>
+
+<div id="index-main-content">
+    <h1>Đây là nội dung chính của trang Index.html</h1>
+</div>
+
+<th:block id="index-static-resource-end">
+    <!--        Khu vực để link Css, JavaScript ở cuối  trang index.html-->
+    <!--    Nếu cần, còn không thì bỏ trống-->
+</th:block>
+</body>
+</html>

@@ -1,0 +1,1 @@
+Package entities để định nghĩa các Entity tương ứng với database mà có sử dụng JPA, Hibernate
