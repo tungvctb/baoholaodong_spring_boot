@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en"
+      xmlns:th="http://www.thymeleaf.org"
+      th:replace="~{layout/_layoutAdmin :: main-fragment(
+                                                ~{::title},
+                                                ~{:: #admin-category-edit-static-resources},
+                                                ~{:: #admin-category-edit-header},
+                                                ~{:: #admin-category-edit-nav},
+                                                ~{:: #admin-category-edit-main-content},
+                                                ~{:: #admin-category-edit-footer}
+                                               )}">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+
+    <h1>Category Edit Page</h1>
+    <div id="admin-category-edit-header">
+        Category Management
+    </div>
+    <div id="admin-category-edit-nav" th:replace="~{/fragments/app-fragment :: nav-admin}">
+        Home Nav
+    </div>
+    <div id="admin-category-edit-main-content">
+        <form th:action="@{/admin/categories/edit}" th:object="${category}" method="post" class="col-md-3" >
+            <input type="text" class="form-control" id="id" th:field="*{id}" required style="display: none">
+            <div class="form-group">
+                <label for="name">Name</label>
+                <input type="text" class="form-control" id="name" th:field="*{name}" required>
+            </div>
+            <div class="form-group">
+                <label for="description">Description</label>
+                <input type="text" class="form-control" id="description" th:field="*{description}" required>
+            </div>
+
+            <div class="form-group">
+                <label for="createdAt"></label>
+                <input type="datetime-local" class="form-control" id="createdAt" th:field="*{createdAt}" required>
+            </div>
+<!--            <div class="form-group">-->
+<!--                <label for="updatedAt"></label>-->
+<!--                <input type="text" class="form-control" id="updatedAt" th:field="*{updatedAt}" required>-->
+<!--            </div>-->
+            <div class="form-group">
+                <label for="status">Status:</label>
+                <select id="status" th:field="*{status}">
+                    <option th:value="2" th:text="'Active'"></option>
+                    <option th:value="1" th:text="'Inactive'"></option>
+                </select>
+            </div>
+
+            <div class="form-group">
+                <label for="parent_id">Category Parent</label>
+                <select id="parent_id" th:field="*{parentId}">
+                    <option th:each="item:${parentCategory}"
+                            th:value="${item.getId()}"
+                            th:text="${item.getName()}">
+                    </option>
+                </select>
+            </div>
+            <input type="submit" value="Update" class="btn btn-success"/>
+        </form>
+    </div>
+    <div id="admin-category-edit-footer" th:replace="~{/fragments/app-fragment :: copyright}">
+        Footer
+    </div>
+</body>
+</html>

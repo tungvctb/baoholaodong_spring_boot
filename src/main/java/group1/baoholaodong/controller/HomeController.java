@@ -10,7 +10,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import java.util.List;
 
 @Controller
-@RequestMapping("/")
+@RequestMapping("/category")
 public class HomeController {
     @Autowired
     private CategoryDAO categoryDAO;
@@ -18,6 +18,6 @@ public class HomeController {
     @GetMapping("")
     public String index(){
         List<Category> categories = categoryDAO.findAll();
-        return "index";
+        return "category/index";
     }
 }

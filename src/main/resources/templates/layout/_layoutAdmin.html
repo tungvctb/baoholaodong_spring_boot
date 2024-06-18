@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en"
+      xmlns:th="http://www.thymeleaf.org"
+      th:fragment="main-fragment (title, otherStaticResources, header, nav, mainContent, footer)">
+<head>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" type="text/css" th:href="@{/css/admin_main.css}" href="../../static/css/admin_main.css"/>
+
+    <!-- Link bootstrap-->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.3.1/dist/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+
+    <title th:replace="${title}">Layout Customer</title>
+    <!-- Other javascript, css source files -->
+    <th:block th:replace="${otherStaticResources} ?: ~{}"></th:block>
+
+</head>
+<body>
+<!-- Header -->
+<header th:insert="${header} ?: ~{}">
+    <p>This is Header</p>
+</header>
+
+<section>
+    <nav th:insert="${nav} ?: ~{}">
+        <ul>
+            <li><a href="#">Page 1</a></li>
+            <li><a href="#">Page 2</a></li>
+        </ul>
+    </nav>
+    <article th:insert="${mainContent} ?: ~{}">
+        <p>This is main content of customerLayout</p>
+    </article>
+</section>
+<footer th:insert="${footer} ?: ~{}">
+    <p>This is Footer mainLayout</p>
+</footer>
+</body>
+</html>

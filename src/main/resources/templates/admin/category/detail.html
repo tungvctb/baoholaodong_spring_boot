@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en"
+      th:replace="~{layout/_layoutAdmin :: main-fragment(
+                                                ~{::title},
+                                                ~{:: #admin-category-detail-static-resources},
+                                                ~{:: #admin-category-detail-header},
+                                                ~{:: #admin-category-detail-nav},
+                                                ~{:: #admin-category-detail-main-content},
+                                                ~{:: #admin-category-detail-footer}
+                                               )}">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+    <h1>Category Detail Page</h1>
+    <div id="admin-category-detail-header">
+        Category Management
+    </div>
+    <div id="admin-category-detail-nav" th:replace="~{/fragments/app-fragment :: nav-admin}">
+        Home Nav
+    </div>
+    <div id="admin-category-detail-main-content">
+        <dl>
+            <dt>Name</dt>
+            <dd th:text="${category.getName()}"></dd>
+            <dt>Description</dt>
+            <dd th:text="${category.getDescription()}"></dd>
+            <dt>Created at</dt>
+            <dd th:text="${category.getCreatedAt()}"></dd>
+            <dt>Updated at</dt>
+            <dd th:text="${category.getUpdatedAt()}"></dd>
+            <dt>Status</dt>
+            <dd th:text="${category.getStatus()}"></dd>
+            <dt>Category</dt>
+            <dd th:text="${category.getParentId()}"></dd>
+        </dl>
+    </div>
+    <div id="admin-category-detail-footer" th:replace="~{/fragments/app-fragment :: copyright}">
+        Footer
+    </div>
+</body>
+</html>

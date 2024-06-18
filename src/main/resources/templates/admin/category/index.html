@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en"
+      xmlns:th="http://www.thymeleaf.org"
+      th:replace="~{layout/_layoutAdmin :: main-fragment(
+                                                ~{::title},
+                                                ~{:: #admin-category-static-resources},
+                                                ~{:: #admin-category-header},
+                                                ~{:: #admin-category-nav},
+                                                ~{:: #admin-category-main-content},
+                                                ~{:: #admin-category-footer}
+                                               )}">
+<head>
+    <meta charset="UTF-8">
+    <title>Category Management</title>
+    <th:block id="admin-category-static-resources">
+        <script type="text/javascript" th:src="@{/about.js}"></script>
+    </th:block>
+
+</head>
+<body>
+<h1>This is Category Management Page</h1>
+<div id="admin-category-header">
+   Category Management
+</div>
+<div id="admin-category-nav" th:replace="~{/fragments/app-fragment :: nav-admin}">
+    Home Nav
+</div>
+<div id="admin-category-main-content">
+    <a th:href="@{/admin/categories/create}" class="btn btn-outline-primary mb-2">Create New Category</a>
+    <table class="table table-light table-striped table-bordered">
+        <thead class="table-dark">
+        <tr>
+            <th>Name</th>
+            <th class="text-center" >Status</th>
+            <th class="text-center">Action</th>
+        </tr>
+        </thead>
+        <tbody>
+            <tr th:each="item : ${category}">
+                <td th:text="${item.getName()}"></td>
+                <td class="text-center">
+                    <span th:if="${item.getStatus() == 1}" class="text-success">Active</span>
+                    <span th:if="${item.getStatus() == 2}" class="text-danger">Inactive</span>
+                </td>
+                <td>
+                    <div class="d-flex align-items-center text-center">
+                        <a th:href="@{/admin/categories/detail(id=${item.getId()})}" class="btn btn-info mr-2">Details</a>
+                        <a th:href="@{/admin/categories/edit(id=${item.getId()})}" class="btn btn-warning">Edit</a>
+                        <form th:action="@{/admin/categories/delete(id=${item.getId()}, page=${currentPage})}"
+                              method="post" onsubmit="return confirm('Are you sure you want to delete this item?')">
+                            <button class="btn btn-danger">Delete</button>
+                        </form>
+                    </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+
+    <!-- Pagination controls -->
+    <div th:replace="fragments/pagination-fragment :: pagination('/admin/categories/index', ${currentPage}, ${totalPages}, ${size})"></div>
+</div>
+<div id="admin-category-footer" th:replace="~{/fragments/app-fragment :: copyright}">
+    Footer
+</div>
+</body>
+</html>
