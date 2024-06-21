@@ -41,6 +41,7 @@
         <div class="form-group">
             <label for="parent_id">Category Parent</label>
             <select id="parent_id" th:field="*{parentId}">
+                <option value="0">No Category</option>
                 <option th:each="item:${parentCategory}"
                         th:value="${item.getId()}"
                         th:text="${item.getName()}">

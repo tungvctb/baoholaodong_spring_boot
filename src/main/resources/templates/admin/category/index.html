@@ -42,10 +42,10 @@
                     <span th:if="${item.getStatus() == 1}" class="text-success">Active</span>
                     <span th:if="${item.getStatus() == 2}" class="text-danger">Inactive</span>
                 </td>
-                <td>
-                    <div class="d-flex align-items-center text-center">
+                <td class="text-center">
+                    <div class="d-flex align-items-center">
                         <a th:href="@{/admin/categories/detail(id=${item.getId()})}" class="btn btn-info mr-2">Details</a>
-                        <a th:href="@{/admin/categories/edit(id=${item.getId()})}" class="btn btn-warning">Edit</a>
+                        <a th:href="@{/admin/categories/edit(id=${item.getId()})}" class="btn btn-warning mr-2">Edit</a>
                         <form th:action="@{/admin/categories/delete(id=${item.getId()}, page=${currentPage})}"
                               method="post" onsubmit="return confirm('Are you sure you want to delete this item?')">
                             <button class="btn btn-danger">Delete</button>

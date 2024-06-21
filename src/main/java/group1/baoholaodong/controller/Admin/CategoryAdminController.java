@@ -2,6 +2,7 @@ package group1.baoholaodong.controller.Admin;
 
 import group1.baoholaodong.dao.CategoryDAO;
 import group1.baoholaodong.models.Category;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -11,6 +12,7 @@ import java.util.List;
 
 @Controller
 @RequestMapping("/admin/categories")
+@Slf4j
 public class CategoryAdminController {
     @Autowired
     private CategoryDAO categoryDAO;
@@ -35,7 +37,6 @@ public class CategoryAdminController {
 
     @GetMapping ("/create")
     public String createCategory(Model model){
-
         List<Category> categories = categoryDAO.findAll();
         model.addAttribute("parentCategory", categories);
         model.addAttribute("category", new Category());
@@ -45,7 +46,11 @@ public class CategoryAdminController {
     @PostMapping("/create")
     public String createCategory(@ModelAttribute Category category, Model model) {
         try {
+            if (category.getParentId() == null|| category.getParentId()==0) {
+                category.setParentId(null);
+            }
             int result = categoryDAO.insert(category);
+            System.out.println(result);
         } catch (IllegalArgumentException e) {
             List<Category> categories = categoryDAO.findAll();
             model.addAttribute("parentCategory", categories);
@@ -57,7 +62,7 @@ public class CategoryAdminController {
 
     @GetMapping("/edit")
     public String editCategory(@RequestParam int id, Model model){
-        model.addAttribute("category",categoryDAO.findById(id));
+        model.addAttribute("category", categoryDAO.findById(id));
         List<Category> categories = categoryDAO.findAll();
         model.addAttribute("parentCategory", categories);
         return "/admin/category/edit";
@@ -70,7 +75,6 @@ public class CategoryAdminController {
         model.addAttribute("category", categoryDAO.findAll());
         return "redirect:/admin/categories/index?page=1";
     }
-
 
     @PostMapping("/delete")
     public String deleteCategory(@RequestParam int id,

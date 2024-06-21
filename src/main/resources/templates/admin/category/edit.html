@@ -31,17 +31,17 @@
             </div>
             <div class="form-group">
                 <label for="description">Description</label>
-                <input type="text" class="form-control" id="description" th:field="*{description}" required>
+                <input type="text" class="form-control" id="description" th:field="*{description}" required >
             </div>
 
             <div class="form-group">
                 <label for="createdAt"></label>
-                <input type="datetime-local" class="form-control" id="createdAt" th:field="*{createdAt}" required>
+                <input type="hidden" class="form-control" id="createdAt" th:field="*{createdAt}">
             </div>
-<!--            <div class="form-group">-->
-<!--                <label for="updatedAt"></label>-->
-<!--                <input type="text" class="form-control" id="updatedAt" th:field="*{updatedAt}" required>-->
-<!--            </div>-->
+            <div class="form-group">
+                <label for="updatedAt"></label>
+                <input type="hidden" class="form-control" id="updatedAt" th:field="*{updatedAt}" required>
+            </div>
             <div class="form-group">
                 <label for="status">Status:</label>
                 <select id="status" th:field="*{status}">
@@ -53,6 +53,7 @@
             <div class="form-group">
                 <label for="parent_id">Category Parent</label>
                 <select id="parent_id" th:field="*{parentId}">
+                    <option value="0">No Category</option>
                     <option th:each="item:${parentCategory}"
                             th:value="${item.getId()}"
                             th:text="${item.getName()}">
