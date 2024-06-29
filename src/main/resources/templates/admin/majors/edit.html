@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en"
+      xmlns:th="http://www.thymeleaf.org"
+      th:replace="~{layout/_layoutAdmin :: main-fragment(
+                                                ~{::title},
+                                                ~{:: #admin-category-edit-static-resources},
+                                                ~{:: #admin-category-edit-header},
+                                                ~{:: #admin-category-edit-nav},
+                                                ~{:: #admin-category-edit-main-content},
+                                                ~{:: #admin-category-edit-footer}
+                                               )}">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+
+    <h1>Major Edit Page</h1>
+    <div id="admin-category-edit-header">
+        Major Management
+    </div>
+    <div id="admin-category-edit-nav" th:replace="~{/fragments/app-fragment :: nav-admin}">
+        Home Nav
+    </div>
+    <div id="admin-category-edit-main-content">
+        <div>
+           <form th:action="@{${major.id} == null ? '/admin/majors' : '/admin/majors/update/' + ${major.id}}" th:object="${major}" method="post">
+        <div>
+            <label>Name:</label>
+            <input type="text" th:field="*{name}" />
+        </div>
+        <div>
+            <label>Description:</label>
+            <input type="text" th:field="*{description}" />
+        </div>
+                <div>
+            <label>CreatedDate:</label>
+            <input type="datetime" th:field="*{createdAt}" />
+        </div>
+        <div>
+            <label>Status:</label>
+            <input type="text" th:field="*{status}" />
+        </div>
+        <div>
+            <button type="submit">Save</button>
+        </div>
+    </form>
+    <a href="/admin/majors">Back to list</a>  
+    <div id="admin-category-edit-footer" th:replace="~{/fragments/app-fragment :: copyright}">
+        Footer
+    </div>
+</body>
+</html>

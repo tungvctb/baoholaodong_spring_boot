@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en"
+      xmlns:th="http://www.thymeleaf.org"
+      th:replace="~{layout/_layoutAdmin :: main-fragment(
+                                                ~{::title},
+                                                ~{:: #admin-category-static-resources},
+                                                ~{:: #admin-category-header},
+                                                ~{:: #admin-category-nav},
+                                                ~{:: #admin-category-main-content},
+                                                ~{:: #admin-category-footer}
+                                               )}">
+<head>
+    <meta charset="UTF-8">
+    <title>Major Management</title>
+    <th:block id="admin-category-static-resources">
+        <script type="text/javascript" th:src="@{/about.js}"></script>
+    </th:block>
+
+</head>
+<body>
+<h1>This is Major Management Page</h1>
+<div id="admin-category-header">
+   Major Management
+</div>
+<div id="admin-category-nav" th:replace="~{/fragments/app-fragment :: nav-admin}">
+    Home Nav
+</div>
+<div id="admin-category-main-content">
+    <div>
+        <h1>Majors Management</h1>
+        <a th:href="@{/admin/majors/create}" class="btn btn-outline-primary mt-2 mb-2">Create</a>
+      <table border="1">
+        <thead>
+            <tr>
+                <th>ID</th>
+                <th>Name</th>
+                <th>Description</th>
+                <th>Created At</th>
+                <th>Status</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr th:each="major : ${majors}">
+                <td th:text="${major.id}"></td>
+                <td th:text="${major.name}"></td>
+                <td th:text="${major.description}"></td>
+                <td th:text="${major.createdAt}"></td>
+                <td th:text="${major.status}"></td>
+                <td>
+                    <a th:href="@{/admin/majors/detail/{id}(id=${major.id})}">View</a> |
+                    <a th:href="@{/admin/majors/edit/{id}(id=${major.id})}">Edit</a> |
+                    <a th:href="@{/admin/majors/delete/{id}(id=${major.id})}">Delete</a>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <a href="/admin/majors/create">Add New Major</a>
+            </div>
+    <!-- Pagination controls -->
+    </div>
+<div id="admin-category-footer" th:replace="~{/fragments/app-fragment :: copyright}">
+    Footer
+</div>
+</body>
+</html>

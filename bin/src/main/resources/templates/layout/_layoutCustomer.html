@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org" th:fragment="main-fragment (title, otherStaticResources, mainContent, otherStaticResourceEnd)">
+
+<head>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" href="/static/css/main.css">
+    <!-- Other javascript, css source files -->
+    <th:block th:replace="${otherStaticResources} ?: ~{}"></th:block>
+    <title th:replace="${title}">Layout Customer</title>
+</head>
+
+<body>
+<!-- Header -->
+<header th:insert="~{/fragments/app-fragment :: header-admin}">
+    <!-- Móc qua trang app-fragment và thay thế bằng th:header-admin -->
+    <p>This is Header</p>
+</header>
+
+<section>
+    <nav th:insert="~{/fragments/app-fragment :: nav-admin}">
+        <!-- Móc qua trang app-fragement và thay thế bằng th: nav-admin -->
+        <ul>
+            <li><a href="#">Page 1</a></li>
+            <li><a href="#">Page 2</a></li>
+        </ul>
+    </nav>
+    <article th:insert="${mainContent} ?: ~{}">
+        <!-- Insert main Content từ page gửi lên -->
+        <!-- Nội dung bên dưới được hiển thị do dùng th:insert -->
+        <p>This is main content of customerLayout</p>
+    </article>
+</section>
+<footer th:insert="~{/fragments/app-fragment :: copyright}">
+    <!-- Móc qua trang app-fragement và thay thế bằng th: coppy-right -->
+    <p>this is Footer mainLayout</p>
+</footer>
+<script th:insert="${otherStaticResourceEnd}"></script>
+</body>
+
+</html>

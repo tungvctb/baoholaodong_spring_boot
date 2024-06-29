@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en"
+      th:replace="~{layout/_layoutAdmin :: main-fragment(
+                                                ~{::title},
+                                                ~{:: #admin-category-detail-static-resources},
+                                                ~{:: #admin-category-detail-header},
+                                                ~{:: #admin-category-detail-nav},
+                                                ~{:: #admin-category-detail-main-content},
+                                                ~{:: #admin-category-detail-footer}
+                                               )}">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+    <h1>Major Detail Page</h1>
+    <div id="admin-category-detail-header">
+        View Detail Major
+    </div>
+    <div id="admin-category-detail-nav" th:replace="~{/fragments/app-fragment :: nav-admin}"> </div>
+    <div id="admin-category-detail-main-content">
+    <h1>Major Details</h1>
+    <div>
+        <label>ID:</label>
+        <span th:text="${major.id}"></span>
+    </div>
+    <div>
+        <label>Name:</label>
+        <span th:text="${major.name}"></span>
+    </div>
+    <div>
+        <label>Description:</label>
+        <span th:text="${major.description}"></span>
+    </div>
+    <div>
+        <label>Created At:</label>
+        <span th:text="${major.createdAt}"></span>
+    </div>    
+    <div>
+        <label>Status:</label>
+        <span th:text="${major.status}"></span>
+    </div>
+    <a href="/admin/majors">Back to list</a>
+    <div id="admin-category-detail-footer" th:replace="~{/fragments/app-fragment :: copyright}">
+        Footer
+    </div>
+    </div>
+</body>
+</html>

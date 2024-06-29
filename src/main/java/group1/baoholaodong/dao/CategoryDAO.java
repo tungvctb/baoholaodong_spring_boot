@@ -1,6 +1,7 @@
 package group1.baoholaodong.dao;
 
-import group1.baoholaodong.mapper.CategoryRowMapper;
+//import group1.baoholaodong.mapper.CategoryRowMapper;
+
 import group1.baoholaodong.models.Category;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.JdbcTemplate;
@@ -9,7 +10,6 @@ import org.springframework.stereotype.Repository;
 
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.time.LocalDate;
 import java.util.Date;
 import java.util.List;
 
@@ -26,8 +26,8 @@ public class CategoryDAO {
             category.setId(rs.getInt("id"));
             category.setName(rs.getString("name"));
             category.setDescription(rs.getString("description"));
-            category.setCreatedAt((Date) rs.getObject("created_at"));
-            category.setUpdatedAt((Date) rs.getObject("updated_at"));
+            category.setCreatedAt((java.sql.Date) rs.getObject("created_at"));
+            category.setUpdatedAt((java.sql.Date) rs.getObject("updated_at"));
             category.setStatus(rs.getByte("status"));
             category.setParentId(rs.getInt("parent_id"));
             return category;

@@ -1,7 +1,8 @@
 package group1.baoholaodong.models;
 
-import java.time.LocalDate;
-import java.util.Date;
+import io.micrometer.common.lang.Nullable;
+
+import java.sql.Date;
 
 public class Category {
     private int id;
@@ -10,19 +11,20 @@ public class Category {
     private Date created_at;
     private Date updated_at;
     private byte status;
-    private int parent_id;
+    @Nullable
+    private Integer parent_id;
 
     // Constructor
     public Category() {
     }
-    public Category(int id, String name, String description, Date created_at, Date updated_at, byte status, int parent_id) {
+    public Category(int id, String name, String description, java.sql.Date created_at, java.sql.Date updated_at, byte status, Integer parent_id) {
         this.id = id;
         this.name = name;
         this.description = description;
-        this.created_at = new Date();
-        this.updated_at = new Date();
-        this.status = status;
+        this.created_at =created_at;
+        this.updated_at = updated_at;
         this.parent_id = parent_id;
+        this.status = status;
     }
 
     // Getter and Setter
@@ -50,19 +52,19 @@ public class Category {
         this.description = description;
     }
 
-    public Date getCreatedAt() {
+    public java.sql.Date getCreatedAt() {
         return created_at;
     }
 
-    public void setCreatedAt(Date created_at) {
+    public void setCreatedAt(java.sql.Date created_at) {
         this.created_at = created_at;
     }
 
-    public Date getUpdatedAt() {
+    public java.sql.Date getUpdatedAt() {
         return updated_at;
     }
 
-    public void setUpdatedAt(Date updated_at) {
+    public void setUpdatedAt(java.sql.Date updated_at) {
         this.updated_at = updated_at;
     }
 
@@ -74,11 +76,11 @@ public class Category {
         this.status = status;
     }
 
-    public int getParentId() {
+    public Integer getParentId() {
         return parent_id;
     }
 
-    public void setParentId(int parent_id) {
+    public void setParentId(Integer parent_id) {
         this.parent_id = parent_id;
     }
 }

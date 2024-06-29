@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en"
+      th:replace="~{layout/_layoutAdmin :: main-fragment(
+                                                ~{::title},
+                                                ~{:: #admin-category-create-static-resources},
+                                                ~{:: #admin-category-create-header},
+                                                ~{:: #admin-category-create-nav},
+                                                ~{:: #admin-category-create-main-content},
+                                                ~{:: #admin-category-create-footer}
+                                               )}">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<h1>Major Management Page</h1>
+<div id="admin-category-create-header">
+    Major Management
+</div>
+<div id="admin-category-create-nav" th:replace="~{/fragments/app-fragment :: nav-admin}">
+    Home Nav
+</div>
+<div id="admin-category-create-main-content">
+    <form th:action="@{/admin/majors/createMajor}" th:object="${major}" method="post">
+        <div>
+            <label>Name:</label>
+            <input type="text" th:field="*{name}" />
+        </div>
+        <div>
+            <label>Description:</label>
+            <input type="text" th:field="*{description}" />
+        </div>
+        <div>            <label>Status:</label>
+            <input type="text" th:field="*{status}" />
+        </div>
+        <div>
+            <button type="submit">Save</button>
+        </div>
+    </form>
+    <a href="/admin/majors">Cancel</a>
+    </div>
+<div id="admin-category-create-footer" th:replace="~{/fragments/app-fragment :: copyright}">
+    Footer
+</div>
+</body>
+</html>
