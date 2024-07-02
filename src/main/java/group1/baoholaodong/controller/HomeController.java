@@ -20,4 +20,10 @@ public class HomeController {
         List<Category> categories = categoryDAO.findAll();
         return "category/index";
     }
+        
+    @GetMapping("/demo")
+    public String demo() {
+    	return "/customer/index";
+    }
+    
 }
