@@ -1,6 +1,5 @@
 package group1.baoholaodong.dao;
 
-import group1.baoholaodong.mapper.CategoryRowMapper;
 import group1.baoholaodong.models.Category;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.JdbcTemplate;
@@ -9,7 +8,7 @@ import org.springframework.stereotype.Repository;
 
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.time.LocalDate;
+import java.sql.Timestamp;
 import java.util.List;
 
 @Repository
@@ -26,10 +25,18 @@ public class CategoryDAO {
             category.setId(rs.getInt("id"));
             category.setName(rs.getString("name"));
             category.setDescription(rs.getString("description"));
-            category.setCreateAt((LocalDate) rs.getObject("created_at"));
-            category.setUpdateAt((LocalDate) rs.getObject("updated_at"));
-            category.setStatus(rs.getByte("status"));
+            // Lấy giá trị Timestamp và chuyển đổi sang LocalDateTime nếu không null
+            Timestamp createdAtTimestamp = rs.getTimestamp("created_at");
+            if (createdAtTimestamp != null) {
+                category.setCreateAt(createdAtTimestamp.toLocalDateTime());
+            }
 
+            Timestamp updatedAtTimestamp = rs.getTimestamp("updated_at");
+            if (updatedAtTimestamp != null) {
+                category.setUpdateAt(updatedAtTimestamp.toLocalDateTime());
+            }
+
+            category.setStatus(rs.getByte("status"));
             return category;
         }
     }

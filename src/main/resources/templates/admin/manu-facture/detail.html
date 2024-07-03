@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org"
+      th:replace="~{layout/_layoutAdmin ::main-fragment (
+                        ~{:: title},
+                        ~{:: #detail-static-resource},
+                        ~{:: #detail-main-content},
+                        ~{:: #detail-static-resource-end},
+                        ~{:: #TinyMCE}
+       )}"
+>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <!-- Link bootstrap-->
+    <link rel="preconnect" href="https://cdn.jsdelivr.net" />
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.3.1/dist/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+
+    <title>Edit Manu-facture</title>
+    <th:block id="detail-static-resource">
+        <!--        Khu vực để link Css, JavaScript ở đầu trang index.html-->
+        <!--    Nếu cần, còn không thì bỏ trống-->
+    </th:block>
+</head>
+<body>
+<div id="detail-main-content">
+    <h1>Edit Manufacture</h1>
+    <form action="/admin/manu-facture/detail" method="post" th:object="${manufacture}">
+        <div class="form-group">
+            <label for="name">name</label>
+            <input readonly class="form-control" type="text" name="name" id="name" placeholder="Name Manufacture" th:field="*{name}">
+        </div>
+
+        <div class="form-group">
+            <p th:utext="*{description}"></p>
+        </div>
+
+<!--        <div class="form-group">-->
+<!--            <label for="createAt">create</label>-->
+<!--            <input readonly type="date" name="create_at" id="createAt" th:field="*{createAt}">-->
+<!--        </div>-->
+
+<!--        <div class="form-group">-->
+<!--            <label for="updateAt">name</label>-->
+<!--            <input readonly type="date" name="create_at" id="updateAt" th:field="*{updateAt}">-->
+<!--        </div>-->
+
+        <input readonly class="btn btn-success" type="submit" value="Create">
+
+    </form>
+</div>
+
+<th:block id="detail-static-resource-end">
+    <!--        Khu vực để link Css, JavaScript ở cuối  trang index.html-->
+    <!--    Nếu cần, còn không thì bỏ trống-->
+</th:block>
+<div id="TinyMCE">
+</div>
+</body>
+</html>

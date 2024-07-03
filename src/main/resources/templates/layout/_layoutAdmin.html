@@ -1,10 +1,14 @@
 <!DOCTYPE html>
-<html lang="en" xmlns:th="http://www.thymeleaf.org" th:fragment="main-fragment (title, otherStaticResources, mainContent, otherStaticResourceEnd)">
+<html lang="en" xmlns:th="http://www.thymeleaf.org" th:fragment="main-fragment (title, otherStaticResources, mainContent, otherStaticResourceEnd, tinyMCE)">
 
 <head>
     <meta charset="UTF-8">
-    <link rel="stylesheet" href="/css/main.css">
-    <link rel="stylesheet" href="/css/layoutCustomer.css">
+    <link rel="stylesheet" type="text/css" th:href="@{/css/admin_main.css}" href="/css/admin_main.css"/>
+
+    <!-- Link bootstrap-->
+    <link rel="preconnect" href="https://cdn.jsdelivr.net" />
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.3.1/dist/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+
     <!-- Other javascript, css source files -->
     <th:block th:replace="${otherStaticResources} ?: ~{}"></th:block>
     <title th:replace="${title}">Layout Customer</title>
@@ -35,7 +39,13 @@
     <!-- Móc qua trang app-fragement và thay thế bằng th: coppy-right -->
     <p>this is Footer mainLayout</p>
 </footer>
-<script th:insert="${otherStaticResourceEnd}"></script>
+<script th:insert="${otherStaticResourceEnd}">
+</script>
+
+<div th:replace="~{tinyMCE} ?: ~{}"></div>
+
+<!--<div th:replace="~{/fragments/app-fragment ::TinyMCE}"></div>-->
+
 </body>
 
 </html>
